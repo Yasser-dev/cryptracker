@@ -90,3 +90,8 @@ export const CoinSymbol = styled.div`
   height: 100%;
   margin-left: 1rem;
 `;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;

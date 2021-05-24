@@ -6,7 +6,7 @@ import axios from "axios";
 function App() {
   const [pagesNo, setPagesNo] = useState(1);
   const [coins, setCoins] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const loadCoins = async () => {
     const { data } = await axios.get(
       "/api/v3/coins/list?include_platform=false"
@@ -16,13 +16,14 @@ function App() {
 
   useEffect(() => {
     loadCoins();
-    setPagesNo(Math.floor(coins.length / 100));
+    setPagesNo(Math.floor(coins.length / 10));
+    setLoading(false);
   }, [coins.length]);
 
   return (
     <div className="App">
       <Header />
-      <Home pagesNo={pagesNo} />
+      {loading ? <h1>Loading...</h1> : <Home pagesNo={pagesNo} />}
     </div>
   );
 }

@@ -1,0 +1,22 @@
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+.page-item.active .page-link {
+  color: #20976a;
+}
+.page-item {
+  list-style-type: none;
+}
+.page-item a {
+  text-decoration: none;
+}
+.page-link {
+  color: #176447;
+}
+
+.page-link:hover {
+  color: #b3bdc8;
+}
