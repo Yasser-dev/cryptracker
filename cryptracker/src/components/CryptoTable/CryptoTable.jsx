@@ -1,6 +1,6 @@
 import React from "react";
 import * as Elements from "./CryptoTableElements";
-const CryptoTable = ({ coinsData, page }) => {
+const CryptoTable = ({ coinsData, page, itemsPerPage }) => {
   return (
     <>
       <Elements.Description>
@@ -27,7 +27,7 @@ const CryptoTable = ({ coinsData, page }) => {
           coinsData.map((coin, index) => (
             <Elements.Li key={coin.id}>
               <Elements.Number style={{ color: "gray" }}>
-                #{index + 1 + (page - 1) * 10}
+                #{index + 1 + (page - 1) * itemsPerPage}
               </Elements.Number>
               <Elements.Name onClick={() => {}}>
                 <Elements.Icon src={coin.image} />
