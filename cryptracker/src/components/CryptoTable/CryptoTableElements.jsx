@@ -10,6 +10,7 @@ export const Description = styled.div`
   background-color: #011413;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
   position: sticky;
+  font-weight: bold;
   top: 0;
 `;
 

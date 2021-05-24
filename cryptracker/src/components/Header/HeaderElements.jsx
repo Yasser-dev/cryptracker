@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const MainNavigation = styled.nav`
@@ -6,14 +7,11 @@ export const MainNavigation = styled.nav`
   display: flex;
   flex-flow: row nowrap;
   -webkit-font-smoothing: antialiased;
-  height: 56px;
+  height: 10vh;
   padding: 0 30px;
 `;
-export const MainNavigationLogoLink = styled.a.attrs({
-  href: "#",
-  onClick: (evt) => {
-    evt.preventDefault();
-  },
+export const MainNavigationLogoLink = styled(Link).attrs({
+  to: "/",
 })`
   display: flex;
   padding-top: 0.7em;
@@ -25,7 +23,7 @@ export const MainNavigationLogoLink = styled.a.attrs({
   transition: opacity 0.2s ease;
   :hover {
     cursor: pointer;
-    opacity: 0.6;
+    opacity: 0.9;
   }
   > img {
     margin: auto;

@@ -1,6 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router";
 import * as Elements from "./CryptoTableElements";
 const CryptoTable = ({ coinsData, page, itemsPerPage }) => {
+  const history = useHistory();
   return (
     <>
       <Elements.Description>
@@ -25,7 +27,12 @@ const CryptoTable = ({ coinsData, page, itemsPerPage }) => {
         {coinsData &&
           coinsData.length &&
           coinsData.map((coin, index) => (
-            <Elements.Li key={coin.id}>
+            <Elements.Li
+              key={coin.id}
+              onClick={() => {
+                history.push(`/currencies/${coin.id}`);
+              }}
+            >
               <Elements.Number style={{ color: "gray" }}>
                 #{index + 1 + (page - 1) * itemsPerPage}
               </Elements.Number>
@@ -35,7 +42,12 @@ const CryptoTable = ({ coinsData, page, itemsPerPage }) => {
                 <Elements.CoinSymbol>{coin.symbol}</Elements.CoinSymbol>
               </Elements.Name>
               <Elements.Price>
-                ${coin.current_price ? coin.current_price : 0}
+                $
+                {coin.current_price
+                  ? coin.current_price >= 1000
+                    ? coin.current_price.toLocaleString()
+                    : coin.current_price
+                  : 0}
               </Elements.Price>
               <Elements.Change24>
                 {coin.price_change_percentage_24h < 0 ? (

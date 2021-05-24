@@ -11,7 +11,8 @@ import { Container } from "../../components/Shared";
 import Pagination from "react-js-pagination";
 import CryptoTable from "../../components/CryptoTable/CryptoTable";
 
-const Home = ({ coinsCount }) => {
+const Home = () => {
+  const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [coinsData, setCoinsData] = useState([]);
   const [page, setPage] = useState(1);
@@ -19,15 +20,18 @@ const Home = ({ coinsCount }) => {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(
-        `/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${page}&sparkline=false`
-      )
-      .then((res) => {
-        setCoinsData(res.data);
-        setLoading(false);
-      });
-  }, [page, itemsPerPage]);
+    axios.get("/api/v3/coins/list?include_platform=false").then((res) => {
+      setCoins(res.data);
+      axios
+        .get(
+          `/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${page}&sparkline=false`
+        )
+        .then((res) => {
+          setCoinsData(res.data);
+          setLoading(false);
+        });
+    });
+  }, [coins.length, page, itemsPerPage]);
 
   console.log("LOADING", loading);
   return loading === true ? (
@@ -73,7 +77,7 @@ const Home = ({ coinsCount }) => {
           className="pagination"
           activePage={page}
           itemsCountPerPage={itemsPerPage}
-          totalItemsCount={coinsCount}
+          totalItemsCount={coins.length}
           onChange={(val) => setPage(val)}
           itemClass="page-item"
           linkClass="page-link"
