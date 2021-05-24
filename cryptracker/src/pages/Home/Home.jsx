@@ -26,7 +26,7 @@ const Home = ({ pagesNo }) => {
     <Container>loading..</Container>
   ) : (
     <Container>
-      <CryptoTable coinsData={coinsData} />
+      <CryptoTable coinsData={coinsData} page={page} />
       <PaginationContainer>
         <Pagination
           className="pagination"

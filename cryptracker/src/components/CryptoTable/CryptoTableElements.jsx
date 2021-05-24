@@ -30,7 +30,7 @@ export const Ul = styled.ul`
   width: 100%;
 `;
 
-export const Rank = styled.div`
+export const Number = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
