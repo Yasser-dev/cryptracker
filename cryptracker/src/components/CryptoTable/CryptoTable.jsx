@@ -8,17 +8,17 @@ const CryptoTable = ({ coinsData, page }) => {
           <p>No.</p>
         </Elements.Number>
         <Elements.Name>
-          <p style={{ marginLeft: "1.5rem" }}>name</p>
+          <p style={{ marginLeft: "1.5rem" }}>Name</p>
         </Elements.Name>
         <Elements.Price>
-          <p>price</p>
+          <p>Price</p>
         </Elements.Price>
         <Elements.Change24 style={{ fontWeight: "unset" }}>
-          24hs
+          24Hrs
         </Elements.Change24>
-        <Elements.MarketCap>market cap</Elements.MarketCap>
-        <Elements.Volume>volume</Elements.Volume>
-        <Elements.TotalSupply>circulating supply</Elements.TotalSupply>
+        <Elements.MarketCap>Market Cap</Elements.MarketCap>
+        <Elements.Volume>Volume</Elements.Volume>
+        <Elements.TotalSupply>Supply</Elements.TotalSupply>
       </Elements.Description>
 
       <Elements.Ul>
@@ -66,7 +66,7 @@ const CryptoTable = ({ coinsData, page }) => {
                   ? coin.circulating_supply?.toLocaleString()
                   : 0}
                 &nbsp;
-                {coin.symbol}
+                {coin.symbol.toUpperCase()}
               </Elements.TotalSupply>
             </Elements.Li>
           ))}
