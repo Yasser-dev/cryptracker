@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <MainNavigation>
       <MainNavigationLogoLink>
-        <img src={logo} />
+        <img src={logo} alt="logo" />
       </MainNavigationLogoLink>
     </MainNavigation>
   );

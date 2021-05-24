@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   width: 95%;
@@ -9,4 +9,16 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+export const flexStart = css`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const flexEnd = css`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
