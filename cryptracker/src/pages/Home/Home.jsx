@@ -45,26 +45,17 @@ const Home = () => {
         <SelectItemsPerPage
           placeholder="Items Per Page"
           name="itemsPerPage"
+          defaultValue={itemsPerPage}
           onChange={(event) => {
             setPage(1);
             setItemsPerPage(Number.parseInt(event.target.value));
           }}
         >
-          <option selected={itemsPerPage === 10} value={10}>
-            10
-          </option>
-          <option selected={itemsPerPage === 25} value={25}>
-            25
-          </option>
-          <option selected={itemsPerPage === 50} value={50}>
-            50
-          </option>
-          <option selected={itemsPerPage === 100} value={100}>
-            100
-          </option>
-          <option selected={itemsPerPage === 250} value={250}>
-            250
-          </option>
+          <option value={10}>10</option>
+          <option value={25}>25</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+          <option value={250}>250</option>
         </SelectItemsPerPage>
       </ItemsPerPageContainer>
       <CryptoTable

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import Loader from "react-spinners/ClipLoader";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
