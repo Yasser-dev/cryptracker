@@ -1,9 +1,14 @@
 import styled from "styled-components";
+export const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+`;
 export const Container = styled.div`
   color: white;
-  width: 100%;
-  height: 7rem;
-
+  width: 90%;
+  height: 8rem;
   display: flex;
   flex-direction: column;
 `;
@@ -65,6 +70,7 @@ export const Symbol = styled.div`
 export const Price = styled.div`
   font-weight: bolder;
   font-size: 2rem;
+  margin-right: 1rem;
 `;
 
 export const Change24 = styled.div`
@@ -75,7 +81,7 @@ export const Change24 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0rem 1rem 0rem 1rem;
+  /* margin: 0rem 1rem 0rem 1rem; */
 `;
 
 export const Icon = styled.img`
