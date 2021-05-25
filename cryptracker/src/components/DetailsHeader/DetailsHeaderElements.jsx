@@ -6,6 +6,8 @@ export const Container = styled.div`
   height: 8rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 export const Top = styled.div`
   width: 100%;
@@ -98,7 +100,7 @@ export const Random = styled.p`
   align-items: center;
   justify-content: center;
   padding: 0.1rem 0.5rem 0.1rem 0.5rem;
-  margin: 1rem;
+  margin-left: 1rem;
   width: fit-content;
   border-radius: 0.2rem;
 `;
