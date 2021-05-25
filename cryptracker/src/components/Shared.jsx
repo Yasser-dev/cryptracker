@@ -23,3 +23,10 @@ export const flexEnd = css`
   justify-content: flex-end;
   align-items: center;
 `;
+
+export const Center = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1em;
+`;

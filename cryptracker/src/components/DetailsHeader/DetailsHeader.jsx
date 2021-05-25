@@ -1,9 +1,10 @@
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { Center } from "../Shared";
 import * as DetailsHeaderElements from "./DetailsHeaderElements";
 const DetailsHeader = ({ coinDetails }) => {
   return (
-    <DetailsHeaderElements.Center>
+    <Center>
       <DetailsHeaderElements.Container>
         <DetailsHeaderElements.Top>
           <DetailsHeaderElements.FirstHalf>
@@ -81,7 +82,7 @@ const DetailsHeader = ({ coinDetails }) => {
           </DetailsHeaderElements.SecondHalf>
         </DetailsHeaderElements.Middle>
       </DetailsHeaderElements.Container>{" "}
-    </DetailsHeaderElements.Center>
+    </Center>
   );
 };
 
