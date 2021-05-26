@@ -5,6 +5,7 @@ import "./charts.styles.css";
 import Loader from "react-spinners/ClipLoader";
 import { Center, Container } from "../Shared";
 import DurationButtons from "../DurationButtons/DurationButtons";
+import { getLineChartOptions, getLineChartData } from "./chartUtils";
 
 const CoinLineChart = ({ coinId }) => {
   const [loading, setLoading] = useState(true);
@@ -25,68 +26,11 @@ const CoinLineChart = ({ coinId }) => {
   }, [coinId, chartDuration]);
   let chartOptions = {};
   if (chartData) {
-    let dates = [];
-    let data = [];
-    chartData.prices.map((element) => {
-      dates.push(
-        new Date(element[0]).toLocaleString().split(",")[
-          chartDuration === "1" ? 1 : 0
-        ]
-      );
-      data.push(element[1]);
-      return null;
-    });
-    chartOptions = {
-      series: [
-        {
-          name: "Price",
-          data: data,
-        },
-      ],
-      options: {
-        chart: {
-          type: "line",
-          zoom: {
-            enabled: true,
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          colors: "#68e397",
-          curve: "smooth",
-          width: 3,
-        },
-        title: {
-          text: `${coinId.toUpperCase()} Price (${chartLabel})`,
-          align: "left",
-          style: {
-            fontSize: "12px",
-            fontWeight: "bold",
-            fontFamily: undefined,
-            color: "#ffffff",
-          },
-        },
-
-        xaxis: {
-          labels: {
-            showDuplicates: false,
-            style: {
-              colors: "#b7b7b7",
-            },
-          },
-          categories: dates,
-        },
-        yaxis: {
-          labels: {
-            style: {
-              colors: "#b7b7b7",
-            },
-          },
-        },
-      },
-    };
+    chartOptions = getLineChartOptions(
+      coinId,
+      chartLabel,
+      getLineChartData(chartData)
+    );
   }
 
   return loading === true ? (

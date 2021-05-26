@@ -28,7 +28,7 @@ const Details = ({ match }) => {
     <Fragment>
       <DetailsHeader coinDetails={coinDetails} />
 
-      {/* <CoinLineChart coinId={match.params.id} /> */}
+      <CoinLineChart coinId={match.params.id} />
       <CoinCandleChart coinId={match.params.id} />
     </Fragment>
   );
