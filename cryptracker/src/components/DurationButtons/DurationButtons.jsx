@@ -35,6 +35,33 @@ const DurationButtons = ({
       </button>
       <button
         onClick={() => {
+          setChartLabel("Last 3 Months");
+          setChartDuration("90");
+        }}
+        className={chartDuration === "90" ? "selected" : ""}
+      >
+        3m
+      </button>
+      <button
+        onClick={() => {
+          setChartLabel("Last 6 Months");
+          setChartDuration("180");
+        }}
+        className={chartDuration === "180" ? "selected" : ""}
+      >
+        6m
+      </button>
+      <button
+        onClick={() => {
+          setChartLabel("Last Year");
+          setChartDuration("365");
+        }}
+        className={chartDuration === "365" ? "selected" : ""}
+      >
+        1y
+      </button>
+      <button
+        onClick={() => {
           setChartLabel("All Time");
           setChartDuration("max");
         }}
