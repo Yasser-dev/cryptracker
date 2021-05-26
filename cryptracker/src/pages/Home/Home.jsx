@@ -7,22 +7,27 @@ import {
   SelectItemsPerPage,
   ItemsPerPageContainer,
   ToolBarContainer,
-  SearchForm,
+  SearchContainer,
   Search,
-  SubmitSearchButton,
+  SearchIconContainer,
+  SearchResultsContainer,
+  SearchResult,
+  SearchElements,
 } from "./HomeElements";
 import { BsSearch } from "react-icons/bs";
 import { Container } from "../../components/Shared";
 import Pagination from "react-js-pagination";
 import CryptoTable from "../../components/CryptoTable/CryptoTable";
-
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 const Home = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [coinsData, setCoinsData] = useState([]);
   const [page, setPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
-
+  const [searchQuery, setSearchQuery] = useState("");
+  const history = useHistory();
   useEffect(() => {
     setLoading(true);
     axios.get("/api/v3/coins/list?include_platform=false").then((res) => {
@@ -40,7 +45,11 @@ const Home = () => {
 
   const onSearchSubmit = (event) => {
     event.preventDefault();
-    console.log("SEARCH EVENT", event.target[0].value);
+
+    history.push({
+      pathname: `/search/${event.target[0].value}`,
+      state: { coins: coins },
+    });
   };
 
   return loading === true ? (
@@ -50,12 +59,29 @@ const Home = () => {
   ) : (
     <Container>
       <ToolBarContainer>
-        <SearchForm onSubmit={onSearchSubmit}>
-          <Search type="text" placeholder="Search" />
-          <SubmitSearchButton type="submit">
-            <BsSearch size="1.5em" />
-          </SubmitSearchButton>
-        </SearchForm>
+        <SearchElements>
+          <SearchContainer onSubmit={onSearchSubmit}>
+            <Search
+              type="text"
+              placeholder="Search"
+              onChange={(event) => setSearchQuery(event.target.value)}
+            />
+            <SearchIconContainer>
+              <BsSearch size="1.5em" />
+            </SearchIconContainer>
+          </SearchContainer>
+          {searchQuery.length > 0 && (
+            <SearchResultsContainer>
+              {coins
+                .filter((coin) => coin.id.includes(searchQuery))
+                .map((match) => (
+                  <SearchResult to={`currencies/${match.id}`}>
+                    {match.name}
+                  </SearchResult>
+                )) ?? <p>No results</p>}
+            </SearchResultsContainer>
+          )}
+        </SearchElements>
         <ItemsPerPageContainer>
           <label htmlFor="itemsPerPage">Items per Page</label>
           <SelectItemsPerPage

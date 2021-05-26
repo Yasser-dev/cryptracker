@@ -49,7 +49,7 @@ const DetailsHeader = ({ coinDetails }) => {
               {coinDetails.market_data.current_price.usd
                 ? coinDetails.market_data.current_price.usd >= 1000
                   ? coinDetails.market_data.current_price.usd.toLocaleString()
-                  : coinDetails.market_data.current_price.usd
+                  : coinDetails.market_data.current_price.usd.toFixed(10)
                 : 0}
             </DetailsHeaderElements.Price>
             {coinDetails.market_data.price_change_24h < 0 ? (

@@ -15,11 +15,11 @@ const Details = ({ match }) => {
 
   useEffect(() => {
     setLoading(true);
+
     axios.get(`/api/v3/coins/${match.params.id}/`).then((res) => {
       setCoinDetails(res.data);
       setLoading(false);
     });
-    return () => {};
   }, [match]);
   return loading === true ? (
     <Container>
