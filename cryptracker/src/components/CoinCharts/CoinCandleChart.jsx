@@ -33,7 +33,7 @@ const CoinCandleChart = ({ coinId }) => {
 
   return loading === true ? (
     <Container>
-      <Loader color="white" size="4rem" />
+      <Loader color="#e2e2e2" size="4rem" />
     </Container>
   ) : (
     <Center

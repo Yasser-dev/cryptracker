@@ -6,7 +6,12 @@ import {
   PaginationContainer,
   SelectItemsPerPage,
   ItemsPerPageContainer,
+  ToolBarContainer,
+  SearchForm,
+  Search,
+  SubmitSearchButton,
 } from "./HomeElements";
+import { BsSearch } from "react-icons/bs";
 import { Container } from "../../components/Shared";
 import Pagination from "react-js-pagination";
 import CryptoTable from "../../components/CryptoTable/CryptoTable";
@@ -33,31 +38,43 @@ const Home = () => {
     });
   }, [coins.length, page, itemsPerPage]);
 
-  console.log("LOADING", loading);
+  const onSearchSubmit = (event) => {
+    event.preventDefault();
+    console.log("SEARCH EVENT", event.target[0].value);
+  };
+
   return loading === true ? (
     <Container>
-      <Loader color="white" size="6rem" />
+      <Loader color="#e2e2e2" size="6rem" />
     </Container>
   ) : (
     <Container>
-      <ItemsPerPageContainer>
-        <label htmlFor="itemsPerPage">Items per Page</label>
-        <SelectItemsPerPage
-          placeholder="Items Per Page"
-          name="itemsPerPage"
-          defaultValue={itemsPerPage}
-          onChange={(event) => {
-            setPage(1);
-            setItemsPerPage(Number.parseInt(event.target.value));
-          }}
-        >
-          <option value={10}>10</option>
-          <option value={25}>25</option>
-          <option value={50}>50</option>
-          <option value={100}>100</option>
-          <option value={250}>250</option>
-        </SelectItemsPerPage>
-      </ItemsPerPageContainer>
+      <ToolBarContainer>
+        <SearchForm onSubmit={onSearchSubmit}>
+          <Search type="text" placeholder="Search" />
+          <SubmitSearchButton type="submit">
+            <BsSearch size="1.5em" />
+          </SubmitSearchButton>
+        </SearchForm>
+        <ItemsPerPageContainer>
+          <label htmlFor="itemsPerPage">Items per Page</label>
+          <SelectItemsPerPage
+            placeholder="Items Per Page"
+            name="itemsPerPage"
+            defaultValue={itemsPerPage}
+            onChange={(event) => {
+              setPage(1);
+              setItemsPerPage(Number.parseInt(event.target.value));
+            }}
+          >
+            <option value={10}>10</option>
+            <option value={25}>25</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+            <option value={250}>250</option>
+          </SelectItemsPerPage>
+        </ItemsPerPageContainer>
+      </ToolBarContainer>
       <CryptoTable
         coinsData={coinsData}
         page={page}

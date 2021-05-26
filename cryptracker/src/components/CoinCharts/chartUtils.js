@@ -37,7 +37,7 @@ export const getLineChartOptions = (coinId, chartLabel, data) => {
           fontSize: "12px",
           fontWeight: "bold",
           fontFamily: undefined,
-          color: "#ffffff",
+          color: "#e2e2e2",
         },
       },
 
@@ -90,7 +90,7 @@ export const getCandleChartOptions = (coinId, chartLabel, data) => {
           fontSize: "12px",
           fontWeight: "bold",
           fontFamily: undefined,
-          color: "#ffffff",
+          color: "#e2e2e2",
         },
       },
       xaxis: {

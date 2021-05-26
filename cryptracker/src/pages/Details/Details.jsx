@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 
 import Loader from "react-spinners/ClipLoader";
 import { Center, Container } from "../../components/Shared";
-import { FcCandleSticks, FcLineChart } from "react-icons/fc";
 import axios from "axios";
 import DetailsHeader from "../../components/DetailsHeader/DetailsHeader";
 import CoinLineChart from "../../components/CoinCharts/CoinLineChart";
@@ -24,7 +23,7 @@ const Details = ({ match }) => {
   }, [match]);
   return loading === true ? (
     <Container>
-      <Loader color="white" size="6rem" />
+      <Loader color="#e2e2e2" size="6rem" />
     </Container>
   ) : (
     <Fragment>

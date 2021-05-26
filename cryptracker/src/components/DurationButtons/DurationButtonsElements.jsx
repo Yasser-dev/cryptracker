@@ -6,7 +6,7 @@ export const DurationButtonsContainer = styled.div`
   border-radius: 12px;
   margin-bottom: 0.5em;
   button {
-    color: white;
+    color: #e2e2e2;
     height: 30px;
     width: 40px;
     border: none;

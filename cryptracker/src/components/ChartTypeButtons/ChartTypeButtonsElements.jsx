@@ -26,7 +26,7 @@ export const ChartTypeButtonsContainer = styled.div`
   }
   button svg {
     width: 100%;
-    fill: white;
+    fill: #e2e2e2;
   }
 
   button.selected {

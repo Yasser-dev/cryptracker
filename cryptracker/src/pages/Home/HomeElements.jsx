@@ -1,25 +1,76 @@
 import styled from "styled-components";
-export const ItemsPerPageContainer = styled.div`
+
+export const ToolBarContainer = styled.div`
   font-size: 1em;
-  width: 100%;
+  width: 95%;
   display: flex;
-  align-items: baseline;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 1em;
 `;
 
 export const SelectItemsPerPage = styled.select`
-  width: 5%;
+  background-color: #273837;
+  border-radius: 12px;
   height: 2rem;
-  background: transparent;
-  color: #ffffff;
-  margin-left: 1em;
-  padding-left: 1em;
-  border: 0.2px solid white;
+  color: #e2e2e2;
+  border: none;
   font-size: 1em;
-  option {
-    color: #20976a;
+  :focus {
+    border: none;
+    outline: none;
   }
+  option {
+    color: #e2e2e2;
+  }
+`;
+
+export const ItemsPerPageContainer = styled.div`
+  font-size: 1em;
+  padding: 5px 10px;
+  border-radius: 12px;
+  background-color: #273837;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  label {
+    margin-right: 1em;
+  }
+`;
+
+export const Search = styled.input`
+  background-color: #273837;
+
+  border-radius: 12px 0 0 12px;
+  border: none !important;
+  height: 2em;
+  color: #e2e2e2;
+  font-size: 1em;
+  width: 15rem;
+  :focus {
+    outline: none;
+  }
+`;
+
+export const SubmitSearchButton = styled.button`
+  background-color: #273837;
+
+  border-radius: 0 12px 12px 0;
+  border: none;
+  height: 100%;
+  color: #e2e2e2;
+  :hover {
+    cursor: pointer;
+  }
+`;
+export const SearchForm = styled.form`
+  font-size: 1em;
+  padding: 5px 10px;
+  border-radius: 12px;
+  background-color: #273837;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PaginationContainer = styled.div`

@@ -2,19 +2,27 @@
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
+  color: #e2e2e2;
 }
 .page-item.active .page-link {
-  color: #20976a;
+  background-color: #e2e2e2;
+  border-radius: 0.3em;
+  color: #273837;
+  padding: 0.3em 0.5em;
 }
 .page-item {
   list-style-type: none;
+  color: #e2e2e2;
 }
 .page-item a {
   text-decoration: none;
+  color: #e2e2e2;
 }
 .page-link {
-  color: #176447;
+  background-color: #273837;
+  border-radius: 0.3em;
+  padding: 0.3em 0.5em;
 }
 
 .page-link:hover {
