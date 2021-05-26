@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DurationButtons = styled.div`
+export const DurationButtonsContainer = styled.div`
   background-color: #273837;
   padding: 5px;
   border-radius: 12px;

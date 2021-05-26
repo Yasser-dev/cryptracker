@@ -12,49 +12,13 @@ const CoinChart = ({ coinId }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(
-        `/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${chartDuration}`
-      )
+      .get(`/api/v3/coins/${coinId}/ohlc?vs_currency=usd&days=${chartDuration}`)
       .then((res) => {
         setChartData(res.data);
         setLoading(false);
       });
     return () => {};
   }, [coinId, chartDuration]);
-  let config;
-  if (chartData) {
-    let labels = [];
-    let data = [];
-    chartData.prices.map((element) => {
-      labels.push(
-        new Date(element[0]).toLocaleString().split(",")[
-          chartDuration === "1" ? 1 : 0
-        ]
-      );
-      data.push(element[1]);
-      return null;
-    });
-    config = {
-      labels: labels,
-      datasets: [
-        {
-          label: `${coinId.toUpperCase()} Price (${chartLabel})`,
-          data: data,
-          borderColor: "rgb(83, 223, 153)",
-          pointStyle: "crossRot",
-          elements: {
-            line: {
-              borderWidth: 0,
-            },
-            point: {
-              borderWidth: 1,
-            },
-            // tension: 0.3,
-          },
-        },
-      ],
-    };
-  }
 
   return loading === true ? (
     <Container>
@@ -104,9 +68,6 @@ const CoinChart = ({ coinId }) => {
           Max
         </button>
       </DurationButtons>
-      <div style={{ width: "55%", marginBottom: "2em" }}>
-        <Line data={config} />
-      </div>
     </Center>
   );
 };

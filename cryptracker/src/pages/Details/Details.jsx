@@ -5,7 +5,7 @@ import { Container } from "../../components/Shared";
 
 import axios from "axios";
 import DetailsHeader from "../../components/DetailsHeader/DetailsHeader";
-import CoinChart from "../../components/CoinChart/CoinChart";
+import CoinLineChart from "../../components/CoinCharts/CoinLineChart";
 
 const Details = ({ match }) => {
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ const Details = ({ match }) => {
     <Fragment>
       <DetailsHeader coinDetails={coinDetails} />
 
-      <CoinChart coinId={match.params.id} />
+      <CoinLineChart coinId={match.params.id} />
     </Fragment>
   );
 };
