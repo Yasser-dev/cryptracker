@@ -84,7 +84,7 @@ const Home = () => {
               {coins
                 .filter((coin) => coin.id.includes(searchQuery))
                 .map((match) => (
-                  <SearchResult to={`currencies/${match.id}`}>
+                  <SearchResult key={match.id} to={`currencies/${match.id}`}>
                     {match.name}
                   </SearchResult>
                 )) ?? <p>No results</p>}
