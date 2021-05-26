@@ -5,6 +5,7 @@ import Loader from "react-spinners/ClipLoader";
 import ReactApexChart from "react-apexcharts";
 import { Center, Container } from "../Shared";
 import DurationButtons from "../DurationButtons/DurationButtons";
+import { getCandleChartOptions, getCandleStickChartData } from "./chartUtils";
 
 const CoinCandleChart = ({ coinId }) => {
   const [loading, setLoading] = useState(true);
@@ -23,44 +24,11 @@ const CoinCandleChart = ({ coinId }) => {
 
   let chartOptions = {};
   if (chartData) {
-    let data = [];
-    chartData.map((element) => {
-      data.push({
-        x: new Date(element[0]),
-        y: element.slice(1, element.length),
-      });
-      return null;
-    });
-    chartOptions = {
-      series: [
-        {
-          data: data,
-        },
-      ],
-      options: {
-        chart: {
-          type: "candlestick",
-        },
-        title: {
-          text: `${coinId.toUpperCase()} Price (${chartLabel})`,
-          align: "left",
-          style: {
-            fontSize: "12px",
-            fontWeight: "bold",
-            fontFamily: undefined,
-            color: "#ffffff",
-          },
-        },
-        xaxis: {
-          type: "datetime",
-        },
-        yaxis: {
-          tooltip: {
-            enabled: true,
-          },
-        },
-      },
-    };
+    chartOptions = getCandleChartOptions(
+      coinId,
+      chartLabel,
+      getCandleStickChartData(chartData)
+    );
   }
 
   return loading === true ? (
