@@ -87,8 +87,15 @@ const Home = () => {
           itemsCountPerPage={itemsPerPage}
           totalItemsCount={coins.length}
           onChange={(val) => setPage(val)}
+          nextPageText="›"
+          prevPageText="‹"
           itemClass="page-item"
           linkClass="page-link"
+          linkClassNext="control"
+          linkClassPrev="control"
+          linkClassFirst="control"
+          linkClassLast="control"
+          pageRangeDisplayed={4}
         />
       </PaginationContainer>
     </Container>
