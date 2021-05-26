@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./charts.styles.css";
 import Loader from "react-spinners/ClipLoader";
-import { Line } from "react-chartjs-2";
+import ReactApexChart from "react-apexcharts";
 import { Center, Container } from "../Shared";
-import { DurationButtons } from "./CoinChartElements";
-const CoinChart = ({ coinId }) => {
+import DurationButtons from "../DurationButtons/DurationButtons";
+
+const CoinCandleChart = ({ coinId }) => {
   const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState();
   const [chartDuration, setChartDuration] = useState("7");
@@ -17,8 +19,49 @@ const CoinChart = ({ coinId }) => {
         setChartData(res.data);
         setLoading(false);
       });
-    return () => {};
   }, [coinId, chartDuration]);
+
+  let chartOptions = {};
+  if (chartData) {
+    let data = [];
+    chartData.map((element) => {
+      data.push({
+        x: new Date(element[0]),
+        y: element.slice(1, element.length),
+      });
+      return null;
+    });
+    chartOptions = {
+      series: [
+        {
+          data: data,
+        },
+      ],
+      options: {
+        chart: {
+          type: "candlestick",
+        },
+        title: {
+          text: `${coinId.toUpperCase()} Price (${chartLabel})`,
+          align: "left",
+          style: {
+            fontSize: "12px",
+            fontWeight: "bold",
+            fontFamily: undefined,
+            color: "#ffffff",
+          },
+        },
+        xaxis: {
+          type: "datetime",
+        },
+        yaxis: {
+          tooltip: {
+            enabled: true,
+          },
+        },
+      },
+    };
+  }
 
   return loading === true ? (
     <Container>
@@ -30,46 +73,19 @@ const CoinChart = ({ coinId }) => {
         flexDirection: "column",
       }}
     >
-      <DurationButtons>
-        <button
-          onClick={() => {
-            setChartLabel("Last 24 Hours");
-            setChartDuration("1");
-          }}
-          className={chartDuration === "1" ? "selected" : ""}
-        >
-          1d
-        </button>
-        <button
-          onClick={() => {
-            setChartLabel("Last Week");
-            setChartDuration("7");
-          }}
-          className={chartDuration === "7" ? "selected" : ""}
-        >
-          7d
-        </button>
-        <button
-          onClick={() => {
-            setChartLabel("Last Month");
-            setChartDuration("30");
-          }}
-          className={chartDuration === "30" ? "selected" : ""}
-        >
-          30d
-        </button>
-        <button
-          onClick={() => {
-            setChartLabel("All Time");
-            setChartDuration("max");
-          }}
-          className={chartDuration === "max" ? "selected" : ""}
-        >
-          Max
-        </button>
-      </DurationButtons>
+      <DurationButtons
+        chartDuration={chartDuration}
+        setChartLabel={setChartLabel}
+        setChartDuration={setChartDuration}
+      />
+      <ReactApexChart
+        style={{ width: "60%" }}
+        options={chartOptions.options}
+        series={chartOptions.series}
+        type="candlestick"
+      />
     </Center>
   );
 };
 
-export default CoinChart;
+export default CoinCandleChart;

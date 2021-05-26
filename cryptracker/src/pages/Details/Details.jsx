@@ -6,6 +6,7 @@ import { Container } from "../../components/Shared";
 import axios from "axios";
 import DetailsHeader from "../../components/DetailsHeader/DetailsHeader";
 import CoinLineChart from "../../components/CoinCharts/CoinLineChart";
+import CoinCandleChart from "../../components/CoinCharts/CoinCandleChart";
 
 const Details = ({ match }) => {
   const [loading, setLoading] = useState(true);
@@ -27,7 +28,8 @@ const Details = ({ match }) => {
     <Fragment>
       <DetailsHeader coinDetails={coinDetails} />
 
-      <CoinLineChart coinId={match.params.id} />
+      {/* <CoinLineChart coinId={match.params.id} /> */}
+      <CoinCandleChart coinId={match.params.id} />
     </Fragment>
   );
 };

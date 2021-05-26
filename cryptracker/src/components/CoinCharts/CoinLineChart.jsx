@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import axios from "axios";
-import Loader from "react-spinners/ClipLoader";
 import "./charts.styles.css";
+import Loader from "react-spinners/ClipLoader";
 import { Center, Container } from "../Shared";
 import DurationButtons from "../DurationButtons/DurationButtons";
+
 const CoinLineChart = ({ coinId }) => {
   const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState();
