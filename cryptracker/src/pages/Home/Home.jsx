@@ -126,10 +126,10 @@ const Home = () => {
           prevPageText="‹"
           itemClass="page-item"
           linkClass="page-link"
-          linkClassNext="control"
-          linkClassPrev="control"
-          linkClassFirst="control"
-          linkClassLast="control"
+          linkClassNext="pagination-control"
+          linkClassPrev="pagination-control"
+          linkClassFirst="pagination-control"
+          linkClassLast="pagination-control"
           pageRangeDisplayed={4}
         />
       </PaginationContainer>

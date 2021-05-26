@@ -24,14 +24,14 @@
   border-radius: 0.3em;
   padding: 0.3em 0.5em;
 }
-.control {
+.pagination-control {
   background-color: #b3bdc82a;
   border-radius: 0.3em;
   padding: 0.3em 0.5em;
   border: 1px solid #e2e2e2;
   color: #e2e2e2;
 }
-.control:hover {
+.pagination-control:hover {
   background-color: #e2e2e22a;
   color: #b3bdc8;
   border: 1px solid #e2e2e2;
