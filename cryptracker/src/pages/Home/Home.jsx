@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Loader from "react-spinners/ClipLoader";
 import "./home.styles.css";
 import {
@@ -19,7 +19,7 @@ import { Container } from "../../components/Shared";
 import Pagination from "react-js-pagination";
 import CryptoTable from "../../components/CryptoTable/CryptoTable";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+
 const Home = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,20 +28,29 @@ const Home = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const history = useHistory();
+
+  const loadData = useCallback(async () => {
+    try {
+      let coinsResponse = await axios.get(
+        "/api/v3/coins/list?include_platform=false"
+      );
+
+      setCoins(coinsResponse.data);
+      let dataResponse = await axios.get(
+        `/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${page}&sparkline=false`
+      );
+
+      setCoinsData(dataResponse.data);
+      setLoading(false);
+    } catch (error) {
+      return history.push("/404");
+    }
+  }, [history, page, itemsPerPage]);
+
   useEffect(() => {
     setLoading(true);
-    axios.get("/api/v3/coins/list?include_platform=false").then((res) => {
-      setCoins(res.data);
-      axios
-        .get(
-          `/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${page}&sparkline=false`
-        )
-        .then((res) => {
-          setCoinsData(res.data);
-          setLoading(false);
-        });
-    });
-  }, [coins.length, page, itemsPerPage]);
+    loadData();
+  }, [loadData]);
 
   const onSearchSubmit = (event) => {
     event.preventDefault();

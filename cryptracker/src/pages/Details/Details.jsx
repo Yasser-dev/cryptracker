@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import Loader from "react-spinners/ClipLoader";
 import { Center, Container } from "../../components/Shared";
@@ -14,7 +14,7 @@ const Details = ({ match }) => {
   const [chartType, setChartType] = useState("line");
   const history = useHistory();
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       let { data } = await axios.get(`/api/v3/coins/${match.params.id}/`);
       if (!data) return history.push("/404");
@@ -23,12 +23,12 @@ const Details = ({ match }) => {
     } catch (error) {
       return history.push("/404");
     }
-  };
-
+  }, [match, history]);
   useEffect(() => {
     setLoading(true);
     loadData();
-  }, [match]);
+  }, [match, loadData]);
+
   return loading === true ? (
     <Container>
       <Loader color="#e2e2e2" size="6rem" />
