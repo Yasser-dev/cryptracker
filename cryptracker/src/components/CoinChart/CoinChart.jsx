@@ -61,7 +61,11 @@ const CoinChart = ({ coinId }) => {
       <Loader color="white" size="4rem" />
     </Container>
   ) : (
-    <Center style={{ flexDirection: "column" }}>
+    <Center
+      style={{
+        flexDirection: "column",
+      }}
+    >
       <DurationButtons>
         <button
           onClick={() => {
@@ -100,7 +104,7 @@ const CoinChart = ({ coinId }) => {
           Max
         </button>
       </DurationButtons>
-      <div style={{ width: "60%", marginBottom: "2em" }}>
+      <div style={{ width: "55%", marginBottom: "2em" }}>
         <Line data={config} />
       </div>
     </Center>
