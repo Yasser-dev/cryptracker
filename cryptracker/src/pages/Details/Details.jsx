@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-
+import { useHistory } from "react-router";
 import Loader from "react-spinners/ClipLoader";
 import { Center, Container } from "../../components/Shared";
 import axios from "axios";
@@ -12,14 +12,22 @@ const Details = ({ match }) => {
   const [loading, setLoading] = useState(true);
   const [coinDetails, setCoinDetails] = useState();
   const [chartType, setChartType] = useState("line");
+  const history = useHistory();
+
+  const loadData = async () => {
+    try {
+      let { data } = await axios.get(`/api/v3/coins/${match.params.id}/`);
+      if (!data) return history.push("/404");
+      setCoinDetails(data);
+      setLoading(false);
+    } catch (error) {
+      return history.push("/404");
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
-
-    axios.get(`/api/v3/coins/${match.params.id}/`).then((res) => {
-      setCoinDetails(res.data);
-      setLoading(false);
-    });
+    loadData();
   }, [match]);
   return loading === true ? (
     <Container>
