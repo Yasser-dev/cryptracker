@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   nameGreen: {
-    color: 'green',
+    color: '#4af06e',
     fontSize: 17,
   },
 });
