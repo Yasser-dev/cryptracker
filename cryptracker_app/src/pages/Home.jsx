@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, Image, StyleSheet} from 'react-native';
+import {FlatList, StyleSheet, ActivityIndicator, View} from 'react-native';
 import CoinDataCard from '../components/CoinDataCard';
 
 const Home = () => {
@@ -8,8 +8,6 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [coinsData, setCoinsData] = useState([]);
   const [page, setPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const loadData = useCallback(async () => {
     try {
@@ -19,32 +17,35 @@ const Home = () => {
 
       setCoins(coinsResponse.data);
       let dataResponse = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${page}&sparkline=false`,
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=${page}&sparkline=false`,
       );
 
       setCoinsData(dataResponse.data);
+
       setLoading(false);
     } catch (error) {}
-  }, [page, itemsPerPage]);
+  }, [page]);
 
   useEffect(() => {
     setLoading(true);
     loadData();
   }, [loadData]);
 
-  return (
+  return loading ? (
+    <View
+      style={{alignItems: 'center', justifyContent: 'center', height: '100%'}}>
+      <ActivityIndicator color="#e2e2e2" size="large" />
+    </View>
+  ) : (
     <FlatList
-      style={{paddingTop: 60, zIndex: 0}}
+      style={styles.list}
       data={coinsData}
-      renderItem={({item}) => <CoinDataCard coin={item} />}
+      renderItem={({item}) => <CoinDataCard key={item.id} coin={item} />}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
-    width: 100,
-    height: 100,
-  },
+  list: {paddingBottom: 15, paddingTop: 15, zIndex: 0},
 });
 export default Home;
