@@ -10,13 +10,18 @@ const AppBar = () => {
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    height: 60,
-    padding: 15,
+    zIndex: 1,
+
+    height: '10%',
+    width: '100%',
+    paddingTop: 5,
+    paddingBottom: 5,
+    backgroundColor: '#020b08',
+    alignItems: 'center',
   },
   logo: {
-    width: 200,
-    height: 45,
+    width: '70%',
+    height: '100%',
   },
 });
 export default AppBar;

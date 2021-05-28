@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import AppBar from './components/AppBar';
+import Home from './pages/Home';
 const App = () => {
   return (
     <View style={styles.container}>
       <AppBar />
+      <Home />
       <Text> Hello World </Text>
     </View>
   );
