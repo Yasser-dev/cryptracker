@@ -1,14 +1,21 @@
 import axios from 'axios';
 import React, {useCallback, useEffect, useState} from 'react';
-import {FlatList, StyleSheet, ActivityIndicator, View} from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+  View,
+  Button,
+} from 'react-native';
 import CoinDataCard from '../components/CoinDataCard';
 
 const Home = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const [coinsData, setCoinsData] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [page, setPage] = useState(1);
-
+  let flatList;
   const loadData = useCallback(async () => {
     try {
       let coinsResponse = await axios.get(
@@ -39,13 +46,30 @@ const Home = () => {
   ) : (
     <FlatList
       style={styles.list}
-      data={coinsData}
+      ref={ref => (flatList = ref)}
+      data={page === 1 ? coinsData : [...allData, ...coinsData]}
       renderItem={({item}) => <CoinDataCard key={item.id} coin={item} />}
+      ListFooterComponent={
+        <Button
+          onPress={() => {
+            setAllData([...allData, ...coinsData]);
+            setPage(page + 1);
+          }}
+          title="Load More"
+          color="#273837"
+          accessibilityLabel="Load more coins button"
+        />
+      }
+      ListFooterComponentStyle={{
+        marginBottom: 25,
+        padding: 25,
+        borderRadius: 150,
+      }}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  list: {paddingBottom: 15, paddingTop: 15, zIndex: 0},
+  list: {paddingBottom: 150, paddingTop: 15, zIndex: 0},
 });
 export default Home;
