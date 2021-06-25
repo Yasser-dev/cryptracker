@@ -49,7 +49,7 @@ A cryptocurrencies price and information tracker web and mobile applications.The
 
 <img src="./images/duration.jpeg" width="90%" />
 
-### Mobile
+### Mobile (React Native)
 
 <img src="./images/mobile1.png" width="40%" />
 <img src="./images/mobile2.png" width="40%" />
